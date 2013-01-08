@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript" language="javascript">
+<!-- 
+	var nowDirection='right';//定义当前移动方向
+	var nextDirection='right';//下次移动方向
+	
+	function snakeMove(){//移动蛇身
+		var snakeBody=document.getElementsByName('snake');
+		
+		//记录蛇头位置
+		var snakeHeadLeft=snakeBody.item(0).style.left;
+		var snakeHeadTop=snakeBody.item(0).style.top;
+		var snakeBodyLeft=null;//当前节点的坐标
+		var snakeBodyTop=null;
+		
+		//移动蛇头<br />
+		nowDirection=nextDirection;//改变当前移动方向
+		if(nextDirection=='left'){
+			snakeBody.item(0).style.left=(parseInt(snakeBody.item(0).style.left)-20+500)%500+'px';
+		}else if(nextDirection=='right'){
+			snakeBody.item(0).style.left=(parseInt(snakeBody.item(0).style.left)+20)%500+'px';
+		}else if(nextDirection=='up'){
+			snakeBody.item(0).style.top=(parseInt(snakeBody.item(0).style.top)-20+300)%300+'px';
+		}else if(nextDirection=='down'){
+			snakeBody.item(0).style.top=(parseInt(snakeBody.item(0).style.top)+20)%300+'px';
+		}
+		
+		
+		for(var i=1;i<snakeBody.length;i++){//移动蛇身
+			//保存当前节点坐标
+			snakeBodyLeft=snakeBody.item(i).style.left;
+			snakeBodyTop=snakeBody.item(i).style.top;
+			//移动当前节点
+			snakeBody.item(i).style.left=snakeHeadLeft;
+			snakeBody.item(i).style.top=snakeHeadTop;
+			//初始化下个节点的移动位置
+			snakeHeadLeft=snakeBodyLeft;
+			snakeHeadTop=snakeBodyTop;
+		}
+		
+		//判断是否吃到食物
+		if(checkFood(snakeBody)){//如果吃到食物蛇身加长
+			//蛇身加长
+			snakeBodyAdd(snakeBody,snakeHeadLeft,snakeHeadTop);
+		}
+	}
+	
+	function snakeBodyAdd(snakeBody,Left,Top){
+		var screens=document.getElementById("screen");//获取screen对象
+		var newBody=snakeBody.item(snakeBody.length-1).cloneNode(true);
+		newBody.style.left=Left;
+		newBody.style.top=Top;
+		screens.appendChild(newBody);//添加节点
+	}
+	
+	function checkFood(subSnakeBody){
+		var food=document.getElementById("food");
+		var snakeHead=document.getElementById("snakeHead");
+		if(snakeHead.style.left==food.style.left&&snakeHead.style.top==food.style.top){//吃到食物
+			//生成新食物
+			newFood();
+			return true;
+		}
+		return false;
+	}
+	
+	function newFood(){
+		var foodLeft=parseInt(Math.random()*24)*20 + 'px';
+		var foodTop=parseInt(Math.random()*14)*20 +'px';
+		var food=document.getElementById("food");
+		food.style.left=foodLeft;
+		food.style.top=foodTop;
+	}
+	
+	function screenFocus(){//屏幕获得焦点
+		document.getElementById("screen").focus();
+		}
+	function main()
+	{
+		var screens=document.getElementById("screen");
+		screens.focus();
+		screens.onkeydown=function(e){controlDeriction(e);};//控制方向
+		window.setInterval("screenFocus()",10);
+		window.setInterval("snakeMove()",100);
+		}
+		
+	function controlDeriction(e){//控制方向判断下次移动的方向
+		e = e|| window.event;
+		//阻止浏览器默认事件
+		if(e.keyCode==37&&nowDirection!='right') nextDirection = 'left';
+		else if(e.keyCode==38&&nowDirection!='down') nextDirection = 'up';
+		else if(e.keyCode==39&&nowDirection!='left') nextDirection = 'right';
+		else if(e.keyCode==40&&nowDirection!='up') nextDirection = 'down';
+		}
+-->s
+</script>
+<style type="text/css">
+.snake{
+	border:0px;
+	position:absolute; 
+	width:20px; 
+	height:20px; 
+	background:#FF0000;
+}
+#screen{
+	margin:auto;
+	width:500px; height:300px; 
+	position:relative; 
+	background:#00FF00;
+}
+</style>
+</head>
+
+<body>
+<div id="screen" tabindex="0">
+<div id="snakeHead" name="snake" class="snake" style="top:100px; left:100px;"></div>
+<div name="snake" class="snake" style="top:100px; left:80px;"></div>
+<div name="snake" class="snake" style="top:100px; left:60px;"></div>
+<div name="snake" class="snake" style="top:100px; left:40px;"></div>
+<div name="snake" class="snake" style="top:100px; left:20px;"></div>
+<div id="food" class="snake" style="top:100px; left:200px; background:#FF0;"></div>
+</div>
+<input type="button" onclick="main()" value="开始"/>
+</body>
+</html>

@@ -1,0 +1,23 @@
+/* CSS Document */
+#food{
+	background:#FF0;
+	border:#999999 solid 5px;
+}
+#snakeHead{
+	background:#003;
+}
+#canvas{
+		position:relative;
+		border:#FF0000 solid 1px;
+		background:#00FF00;
+		margin:auto;
+		width:600px;
+		height:400px;
+}
+#canvas div{
+	border:0px;
+	position:absolute;
+	background:#F00;
+	width:20px;
+	height:20px;
+}
