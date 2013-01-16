@@ -26,7 +26,8 @@ $(document).ready(function(e) {
             });
 		},
 		run:function(){
-			var _thisRun=this;
+			var _thisRun=this,
+			temp;
 			this.currentDrection=this.nextDrection;
 			this.snakeHeadLeft=$('#snakeHead').css('left');
 			this.snakeHeadTop=$('#snakeHead').css('top');
@@ -34,13 +35,17 @@ $(document).ready(function(e) {
 			this.snakeBodyTop=null;
 			
 			if(this.nextDrection=='left'){
-				$('#snakeHead').css({'left':'-=20'});
+				temp = (parseInt($('#snakeHead').css('left')) - 20 + 600) % 600 + 'px';
+				$('#snakeHead').css({'left':temp});
 			}else if(this.nextDrection=='right'){
-				$('#snakeHead').css({'left':'+=20'});
+				temp = (parseInt($('#snakeHead').css('left')) +20 ) % 600 + 'px';
+				$('#snakeHead').css({'left':temp});
 			}else if(this.nextDrection=='up'){
-				$('#snakeHead').css({'top':'-=20'});
+				temp = (parseInt($('#snakeHead').css('top')) - 20 + 400) % 400 + 'px';
+				$('#snakeHead').css({'top':temp});
 			}else if(this.nextDrection=='down'){
-				$('#snakeHead').css({'top':'+=20'})
+				temp = (parseInt($('#snakeHead').css('top')) + 20 ) % 400 + 'px';
+				$('#snakeHead').css({'top':temp});
 			}
 			
 			$('#canvas div:not(#snakeHead,#food)').each(function(index, element) {
@@ -50,8 +55,51 @@ $(document).ready(function(e) {
 				_thisRun.snakeHeadLeft=_thisRun.snakeBodyLeft;
 				_thisRun.snakeHeadTop=_thisRun.snakeBodyTop;
             });
-			_thisRun.checkFood();//检查是否吃到食物
-			window.setTimeout(function(){ _thisRun.run();},200);
+            if(checkDead()){
+            	_thisRun.checkFood();//检查是否吃到食物
+				var time = window.setTimeout(function(){ _thisRun.run();},200);
+            }
+			function checkDead(){
+				var 
+				that = _thisRun,
+				_time = time,
+				result = true;
+				headLeft = parseInt($('#snakeHead').css('left'));
+				headTop = parseInt($('#snakeHead').css('top'));
+				
+				$('#canvas div:not(#snakeHead,#food)').each(function() {
+				  	if(headLeft == parseInt($(this).css('left')) && headTop == parseInt($(this).css('top'))){
+				  		//死了
+				  		that.currentDrection='right';
+						that.nextDrection='right';
+				  		alert('死了');
+				  		$('#canvas div:not(#food)').each(function(index, element) {//初始化蛇身
+			                $(this).css({'top':'100px','left':(100-index*20)+'px'});
+			            });
+						//初始化食物
+						$('#food').css({'left':'200px','top':'100px'});
+						
+						$('#canvas div:not(#snakeHead,#food):gt(3)').remove()
+				  		result = false
+				  	}
+				});
+				
+				if(headLeft == 0 || headLeft == 580 || headTop == 0 || headTop == 380){
+					that.currentDrection='right';
+					that.nextDrection='right';
+					alert('撞墙了');
+					$('#canvas div:not(#food)').each(function(index, element) {//初始化蛇身
+		                $(this).css({'top':'100px','left':(100-index*20)+'px'});
+		            });
+					//初始化食物
+					$('#food').css({'left':'200px','top':'100px'});
+					
+					$('#canvas div:not(#snakeHead,#food):gt(3)').remove()
+					result = false;
+				}
+				
+				return result;
+			}
 		},
 		ListenDirection:function(){
 			var _thisDirection=this;
@@ -71,6 +119,14 @@ $(document).ready(function(e) {
 				var foodTop=parseInt(Math.random()*20)*20 +'px';
 				//修改食物坐标
 				$('#food').css({'left':foodLeft,'top':foodTop});
+				//增加舍身
+				var left = parseInt(($('.snakeTail').eq(0).css('left'))) - 20 + 'px';
+				var top = $('.snakeTail').eq(0).css('top');
+				$('.snakeTail').removeClass('snakeTail');
+				$('<div>').css({'left':left, 'top':top}).addClass('snakeTail').appendTo('#canvas');
 			}
+		},
+		checkDead:function(){
+			
 		}
 	}

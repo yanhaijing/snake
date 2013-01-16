@@ -1,14 +1,12 @@
 /* CSS Document */
-#food{
+#canvas #food{
 	background:#FF0;
-	border:#999999 solid 5px;
 }
-#snakeHead{
-	background:#003;
+#canvas #snakeHead{
+	background:blue
 }
 #canvas{
 		position:relative;
-		border:#FF0000 solid 1px;
 		background:#00FF00;
 		margin:auto;
 		width:600px;
@@ -20,4 +18,5 @@
 	background:#F00;
 	width:20px;
 	height:20px;
+	border-radius:10px
 }
