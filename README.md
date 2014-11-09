@@ -1,7 +1,7 @@
 <a href="http://yanhaijing.github.com/snake">
   <img src="./工程1.ico" width="100px">
 </a>
-#[Snake](http://yanhaijing.github.com/snake)
+#[Snake](http://yanhaijing.github.com/snake) [![license](http://img.shields.io/npm/l/express.svg)](https://github.com/yanhaijing/snake/blob/master/MIT-LICENSE.txt)
 
 Snake is a simple game on web that is like the game Snake
 
