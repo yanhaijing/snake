@@ -1,11 +1,12 @@
 <a href="http://yanhaijing.github.com/snake">
   <img src="./工程1.ico" width="100px">
 </a>
-#[Snake](http://yanhaijing.github.com/snake) [![license](http://img.shields.io/npm/l/express.svg)](https://github.com/yanhaijing/snake/blob/master/MIT-LICENSE.txt)
+
+# [Snake](http://yanhaijing.github.com/snake) [![license](http://img.shields.io/npm/l/express.svg)](https://github.com/yanhaijing/snake/blob/master/MIT-LICENSE.txt)
 
 Snake is a simple game on web that is like the game Snake
 
-##Platform
+## Platform
 
 * firefox
 * chrome
@@ -13,22 +14,22 @@ Snake is a simple game on web that is like the game Snake
 * safira
 * ie6+ 
 
-##Demo
+## Demo
 
 [http://yanhaijing.github.com/snake](http://yanhaijing.github.com/snake)
 
-##Issues
+## Issues
 
 [Report a Problem](https://github.com/yanhaijing/snake/issues)
 
-##Authors
+## Authors
 
 **yanhaijing**
 
 - [Twitter](http://t.qq.com/yanhaijing1234 "yanhaijing's Twitter")
 - [Email](http://yanhaijing1234@gmail.com "yanhaijing's Email")
 
-##Copyright and license
+## Copyright and license
 
 Copyright © 2013 yanhaijing. All Rights Reserved
 
