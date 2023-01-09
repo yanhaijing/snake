@@ -119,7 +119,7 @@ $(document).ready(function(e) {
 				var foodTop=parseInt(Math.random()*20)*20 +'px';
 				//修改食物坐标
 				$('#food').css({'left':foodLeft,'top':foodTop});
-				//增加舍身
+				//增加蛇身
 				var left = parseInt(($('.snakeTail').eq(0).css('left'))) - 20 + 'px';
 				var top = $('.snakeTail').eq(0).css('top');
 				$('.snakeTail').removeClass('snakeTail');
